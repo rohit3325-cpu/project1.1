@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaLinkedin, FaInstagram } from 'react-icons/fa'; // import icons
 
 export default function Hero() {
   return (
@@ -11,12 +12,23 @@ export default function Hero() {
           Creativity. Strategy. Execution. <br className="hidden md:block" />
           Let&apos;s bring ideas to life!
         </p>
+        
         <a
           href="#contact"
           className="px-6 py-3 bg-white text-black rounded-full font-semibold shadow-md hover:scale-105 transition-transform"
         >
           Get Started
         </a>
+
+        {/* Social Icons */}
+        <div className="flex space-x-4 mt-6">
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-400 text-2xl">
+            <FaLinkedin />
+          </a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-pink-400 text-2xl">
+            <FaInstagram />
+          </a>
+        </div>
       </div>
 
       {/* Right Side - Image */}
@@ -31,5 +43,6 @@ export default function Hero() {
     </section>
   );
 }
+
 
 
