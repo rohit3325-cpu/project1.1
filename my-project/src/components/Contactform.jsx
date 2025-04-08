@@ -1,15 +1,42 @@
 // components/ContactSection.jsx
 
-import React from 'react';
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
+
 
 const ContactSection = () => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    
+      
+
+    emailjs.sendForm(
+      'service_hg8x728',
+      'template_q4lzavr',      // Replace with your EmailJS template ID
+      form.current,
+      'Wd2YKQQGYeiaK9Qav'        // Replace with your EmailJS public key
+    ).then(
+      (result) => {
+        console.log(result.text);
+        alert('Message sent successfully!');
+        form.current.reset();
+      },
+      (error) => {
+        alert('Failed to send message. Try again!');
+        console.error(error.text);
+      }
+    );
+  };
+
   return (
     <section
       id="contact"
       className="w-full min-h-screen bg-[#0f0f0f] text-white py-16 px-6 md:px-20 flex items-center"
     >
       <div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12">
-        
         {/* Left Side - Info */}
         <div>
           <h2 className="text-4xl font-bold mb-6">Get in Touch</h2>
@@ -25,13 +52,15 @@ const ContactSection = () => {
         </div>
 
         {/* Right Side - Form */}
-        <form className="space-y-6 bg-[#1a1a1a] p-8 rounded-2xl shadow-lg">
+        <form ref={form} onSubmit={sendEmail} className="space-y-6 bg-[#1a1a1a] p-8 rounded-2xl shadow-lg">
           <div>
             <label className="block text-sm text-gray-300">Name</label>
             <input
               type="text"
+              name="user_name"
               className="w-full p-3 mt-1 rounded-lg bg-[#2a2a2a] text-white outline-none"
               placeholder="Your name"
+              required
             />
           </div>
 
@@ -39,17 +68,21 @@ const ContactSection = () => {
             <label className="block text-sm text-gray-300">Email</label>
             <input
               type="email"
+              name="user_email"
               className="w-full p-3 mt-1 rounded-lg bg-[#2a2a2a] text-white outline-none"
               placeholder="Your email"
+              required
             />
           </div>
 
           <div>
             <label className="block text-sm text-gray-300">Message</label>
             <textarea
+              name="message"
               rows="4"
               className="w-full p-3 mt-1 rounded-lg bg-[#2a2a2a] text-white outline-none"
               placeholder="Your message"
+              required
             ></textarea>
           </div>
 
