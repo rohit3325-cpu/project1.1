@@ -1,36 +1,8 @@
 // components/ContactSection.jsx
 
-import React, { useRef } from 'react';
-import emailjs from '@emailjs/browser';
-
+import React from 'react';
 
 const ContactSection = () => {
-  const form = useRef();
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    
-      
-
-    emailjs.sendForm(
-      'service_hg8x728',
-      'template_q4lzavr',      // Replace with your EmailJS template ID
-      form.current,
-      'Wd2YKQQGYeiaK9Qav'        // Replace with your EmailJS public key
-    ).then(
-      (result) => {
-        console.log(result.text);
-        alert('Message sent successfully!');
-        form.current.reset();
-      },
-      (error) => {
-        alert('Failed to send message. Try again!');
-        console.error(error.text);
-      }
-    );
-  };
-
   return (
     <section
       id="contact"
@@ -52,12 +24,16 @@ const ContactSection = () => {
         </div>
 
         {/* Right Side - Form */}
-        <form ref={form} onSubmit={sendEmail} className="space-y-6 bg-[#1a1a1a] p-8 rounded-2xl shadow-lg">
+        <form
+          action="https://formspree.io/f/mvgkdzya" // ⬅️ Replace with your actual Formspree endpoint
+          method="POST"
+          className="space-y-6 bg-[#1a1a1a] p-8 rounded-2xl shadow-lg"
+        >
           <div>
             <label className="block text-sm text-gray-300">Name</label>
             <input
               type="text"
-              name="user_name"
+              name="name"
               className="w-full p-3 mt-1 rounded-lg bg-[#2a2a2a] text-white outline-none"
               placeholder="Your name"
               required
@@ -68,7 +44,7 @@ const ContactSection = () => {
             <label className="block text-sm text-gray-300">Email</label>
             <input
               type="email"
-              name="user_email"
+              name="email"
               className="w-full p-3 mt-1 rounded-lg bg-[#2a2a2a] text-white outline-none"
               placeholder="Your email"
               required
@@ -99,3 +75,4 @@ const ContactSection = () => {
 };
 
 export default ContactSection;
+
