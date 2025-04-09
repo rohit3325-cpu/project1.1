@@ -4,7 +4,7 @@ import Navbar from './components/Navbar'
 // import './App.css
 import Services from './components/Services'
 import About from './components/About'
-import Contactform from './components/Contactform'
+// import Contactform from './components/Contactform'
 import Footer from './components/Footer'
 
 
@@ -18,7 +18,7 @@ function App() {
          <Navbar />
          <About />
          <Services />
-         <Contactform />
+         {/* <Contactform /> */}
         
          <Footer />
      </div>
